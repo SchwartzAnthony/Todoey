@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TodoListViewController: UITableViewController {
+class TodoListViewController: UITableViewController, UITableViewDelegate {
     
     let itemArray = ["Find Mike", "Buy Eggos", "Destroy Demogorgon"]
 
@@ -34,7 +34,22 @@ class TodoListViewController: UITableViewController {
     }
     
     //MARK - TableView Delegate Methods
-
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        // print(itemArray[indexPath.row])
+        
+        if tableView.cellForRow(at: indexPath)?.accessoryType == .checkmark {
+            tableView.cellForRow(at: indexPath)?.accessoryType = .none
+        } else {
+            tableView.cellForRow(at: indexPath)?.accessoryType = .checkmark
+        }
+        
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+        
+    }
+    
+    
 
 }
 
